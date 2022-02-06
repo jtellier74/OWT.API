@@ -10,19 +10,14 @@ namespace OWT.API.Mapping
     {
         public ContactMapping()
         {
-            CreateMap<Skill, SkillModel>();
-            CreateMap<SkillModel, Skill>();
+            //CreateMap<Skill, SkillModel>();
+            //CreateMap<SkillModel, Skill>();
+
             CreateMap<Contact, ContactModel>()
             .ForMember(s => s.Skills, opt => opt.MapFrom(p => p.ContactSkill.Select(x=>x.Skill).ToList())).ReverseMap();
 
-            //CreateMap<OWT.Data.EntityModels.ContactSkill, SkillModel>()
-            //        .ForMember(d => d.Id, opt => opt.MapFrom(s => s.SkillId))
-            //        .ForMember(d => d.Name, opt => opt.MapFrom(s => s.Skill.Name));
-
-            //CreateMap<ContactModel, Contact>();
-
-            //CreateMap<SkillModel, OWT.Data.EntityModels.ContactSkill>()
-            //      .ForMember(d => d.SkillId, opt => opt.MapFrom(s => s.Id));
+            CreateMap<Skill, SkillModel>()
+            .ForMember(s => s.Contacts, opt => opt.MapFrom(p => p.ContactSkill.Select(x => x.Contact).ToList())).ReverseMap();
 
             CreateMap<AddContactRequest, ContactModel>();
             CreateMap<UpdateContactRequest, ContactModel>();
