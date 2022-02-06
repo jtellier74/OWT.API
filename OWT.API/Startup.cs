@@ -12,6 +12,7 @@ using OWT.Data;
 using OWT.Domain.Models.Config;
 using System;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace OWT.API
 {
@@ -51,7 +52,8 @@ namespace OWT.API
             services.AddDbContext<DatabaseContext>(
             options => options.UseSqlServer(Configuration.GetConnectionString("OWTDatabase")));
 
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(x =>x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OWT.API", Version = "v1" });

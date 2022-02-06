@@ -17,24 +17,6 @@ namespace OWT.Data
             modelBuilder.Entity<ContactSkill>()
                         .HasKey(s => new { s.SkillId, s.ContactId });
 
-            // modelBuilder.Entity<Contact>()
-            //.HasMany(p => p.Skills)
-            //.WithMany(p => p.Contacts)
-            //.UsingEntity<ContactSkill>(
-            //    j => j
-            //        .HasOne(pt => pt.Skill)
-            //        .WithMany(t => t.ContactSkill)
-            //        .HasForeignKey(pt => pt.SkillId),
-            //    j => j
-            //        .HasOne(pt => pt.Contact)
-            //        .WithMany(p => p.ContactSkill)
-            //        .HasForeignKey(pt => pt.ContactId),
-            //    j =>
-            //    {
-            //        j.HasKey(t => new { t.SkillId, t.ContactId });
-            //    });
-
-
             modelBuilder.Entity<ContactSkill>()
             .HasOne<Contact>(sc => sc.Contact)
             .WithMany(s => s.ContactSkill)
@@ -45,18 +27,6 @@ namespace OWT.Data
                 .HasOne<Skill>(sc => sc.Skill)
                 .WithMany(s => s.ContactSkill)
                 .HasForeignKey(sc => sc.SkillId);
-
-
-            //modelBuilder.Entity<ContactSkill>()
-            //.HasKey(bc => new { bc.SkillId, bc.ContactId });
-            //modelBuilder.Entity<ContactSkill>()
-            //    .HasOne(bc => bc.Skill)
-            //    .WithMany(b => b.ContactSkill)
-            //    .HasForeignKey(bc => bc.SkillId);
-            //modelBuilder.Entity<ContactSkill>()
-            //    .HasOne(bc => bc.Contact)
-            //    .WithMany(c => c.ContactSkill)
-            //    .HasForeignKey(bc => bc.ContactId);
 
             var Julien = new Contact
             {

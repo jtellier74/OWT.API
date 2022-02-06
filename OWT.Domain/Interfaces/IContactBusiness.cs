@@ -9,7 +9,7 @@ namespace OWT.Domain.Interfaces
     {
         Task<List<ContactModel>> GetAllContacts(); 
         Task<List<ContactModel>> GetAllContactsWithSkills(); 
-         Task<ContactModel> AddContact(AddContactRequest addContactRequest);
+        Task<ContactModel> AddContact(AddContactRequest addContactRequest);
         Task<ContactModel> AddContactWithSkills(AddContactRequest addContactRequest);
         Task<ContactModel> UpdateContact(UpdateContactRequest request);
         Task<ContactModel> GetContact(int id);

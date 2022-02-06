@@ -11,6 +11,8 @@ namespace OWT.API
         {
             builder.RegisterType<ContactManager>().As<IContactManager>();
             builder.RegisterType<ContactBusiness>().As<IContactBusiness>();
+            builder.RegisterType<SkillBusiness>().As<ISkillBusiness>();
+            builder.RegisterType<SkillManager>().As<ISkillManager>();
             builder.RegisterType<AuthBusiness>().As<IAuthBusiness>();
         }
     }
