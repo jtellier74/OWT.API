@@ -13,11 +13,11 @@ namespace OWT.API.Controllers
     public class ContactController : ApiControllerBase
     {
         private static IContactBusiness _contactBusiness;
-        private readonly IMemoryCache _memoryCache;
+        //private readonly IMemoryCache _memoryCache;
         public ContactController(IContactBusiness contactBusiness, IMapper mapper, IMemoryCache memoryCache) : base(mapper)
         {
             _contactBusiness = contactBusiness;
-            _memoryCache = memoryCache;
+            //_memoryCache = memoryCache;
         }
 
         [HttpGet("contacts")]

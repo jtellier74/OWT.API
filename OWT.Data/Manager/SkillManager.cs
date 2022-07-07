@@ -3,10 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using OWT.Domain.Interfaces;
 using OWT.Domain.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace OWT.Data.Manager
@@ -17,13 +15,11 @@ namespace OWT.Data.Manager
 
         private readonly DatabaseContext _databaseContext;
         private readonly IMapper _mapper;
-        private readonly IMemoryCache _memoryCache;
 
         public SkillManager(DatabaseContext databaseContext, IMapper mapper, IMemoryCache memoryCache)
         {
             _databaseContext = databaseContext;
             _mapper = mapper;
-            _memoryCache = memoryCache;
         }
         public async Task<List<SkillModel>> GetAllSkills() 
         {
