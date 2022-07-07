@@ -14,12 +14,10 @@ namespace OWT.Data.Manager
     {
         private readonly DatabaseContext _databaseContext;
         private readonly IMapper _mapper;
-        private readonly IMemoryCache _memoryCache;
-        public ContactManager(DatabaseContext databaseContext, IMapper mapper, IMemoryCache memoryCache)
+        public ContactManager(DatabaseContext databaseContext, IMapper mapper/*, IMemoryCache memoryCache*/)
         {
             _databaseContext = databaseContext;
             _mapper = mapper;
-            _memoryCache = memoryCache; 
         }
 
         public async Task<List<ContactModel>> GetAllContacts()
@@ -86,12 +84,11 @@ namespace OWT.Data.Manager
 
         public async Task<ContactModel> UpdateContact(ContactModel contactModel)
         {
-            var idCache = _memoryCache.Get("Id");
-
-            if (idCache.ToString() != contactModel.Id.ToString())
+            if (contactModel.Id.Equals(null) || contactModel.Id.Equals(0))
             {
                 return null;
             }
+
             _databaseContext.Update(_mapper.Map<Contact>(contactModel));
             await _databaseContext.SaveChangesAsync();
 
@@ -105,19 +102,8 @@ namespace OWT.Data.Manager
 
             if (contact != null && contact.FirstName == firstname)
             {
-                _memoryCache.Set("Id", contact.Id);
 
-                //To Do: AutoMapper
-                result = new ContactModel
-                {
-                    Id = contact.Id,
-                    FirstName = contact.FirstName,
-                    LastName = contact.LastName,
-                    Address = contact.Address,
-                    Email = contact.Email,
-                    FullName = contact.FullName,
-                    Phone = contact.Phone
-                };
+                result = _mapper.Map<ContactModel>(contact);
             }
             return result;
 

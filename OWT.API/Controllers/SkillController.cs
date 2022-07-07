@@ -15,11 +15,11 @@ namespace OWT.API.Controllers
     public class SkillController : ApiControllerBase
     {
         private static ISkillBusiness _skillBusiness;
-        private readonly IMemoryCache _memoryCache;
+        //private readonly IMemoryCache _memoryCache;
         public SkillController(ISkillBusiness skillBusiness, IMapper mapper, IMemoryCache memoryCache) : base(mapper)
         {
             _skillBusiness = skillBusiness;
-            _memoryCache = memoryCache;
+            //_memoryCache = memoryCache;
         }
 
         [HttpGet("skills")]
